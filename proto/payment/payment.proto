@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package payment;
+
+option go_package = "github.com/your-username/proto-repo/proto/payment";
+
+service PaymentService {
+  rpc CreatePayment (PaymentRequest) returns (PaymentResponse) {}
+  rpc GetPaymentStatus (PaymentStatusRequest) returns (PaymentStatusResponse) {}
+}
+
+message PaymentRequest {
+  string payment_id = 1;
+  double amount = 2;
+}
+
+message PaymentResponse {
+  string confirmation_id = 1;
+}
+
+message PaymentStatusRequest {
+  string payment_id = 1;
+}
+
+message PaymentStatusResponse {
+  string status = 1;
+}
