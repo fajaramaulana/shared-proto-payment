@@ -1,4 +1,4 @@
-module shared-proto-payment
+module github.com/fajaramaulana/shared-proto-payment
 
 go 1.23.0
 
