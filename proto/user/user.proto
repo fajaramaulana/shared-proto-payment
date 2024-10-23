@@ -3,7 +3,7 @@ syntax = "proto3";
 package user;
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/your-username/proto-repo/proto/user";
+option go_package = "github.com/fajaramaulana/shared-proto-payment/proto/user";
 
 message User {
   string user_uuid = 1;
