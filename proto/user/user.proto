@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package user;
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/your-username/proto-repo/proto/user";
+
+message User {
+  string user_uuid = 1;
+  string username = 2;
+  string full_name = 3;
+  string email = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
