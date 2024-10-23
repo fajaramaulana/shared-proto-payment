@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package notification;
 
-option go_package = "github.com/your-username/proto-repo/proto/notification";
+option go_package = "github.com/fajaramaulana/shared-proto-payment/proto/notification";
 
 service NotificationService {
   rpc SendNotification (NotificationRequest) returns (NotificationResponse) {}
