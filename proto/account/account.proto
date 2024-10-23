@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package account;
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/your-username/proto-repo/proto/account";
+
+message Account {
+  string account_uuid =1;
+  string owner = 2;
+  string currency = 3;
+  string balance = 4;
+  google.protobuf.Timestamp created_at = 5;
+}

@@ -16,6 +16,8 @@ message RegisterRequest {
   string first_name = 4;
   string last_name = 5;
   string dob = 6; // Date of Birth
+  string place_of_birth = 7;
+  string phone_number = 8;
 }
 
 message LoginRequest {
