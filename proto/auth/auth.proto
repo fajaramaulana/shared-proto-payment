@@ -30,3 +30,9 @@ message AuthResponse {
   string token = 2;
   string message = 3;
 }
+
+message LoginResponse {
+  int32 status = 1;
+  string token = 2;
+  string message = 3;
+}
