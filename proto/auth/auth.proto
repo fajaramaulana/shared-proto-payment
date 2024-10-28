@@ -26,6 +26,7 @@ message LoginRequest {
 }
 
 message AuthResponse {
-  string token = 1;
-  string message = 2;
+  string status = 1;
+  string token = 2;
+  string message = 3;
 }
