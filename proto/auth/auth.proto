@@ -5,8 +5,8 @@ package auth;
 option go_package = "github.com/fajaramaulana/shared-proto-payment/proto/auth";
 
 service AuthService {
-  rpc RegisterUser (RegisterRequest) returns (AuthResponse) {}
-  rpc LoginUser (LoginRequest) returns (AuthResponse) {}
+  rpc RegisterUser (RegisterRequest) returns (RegisterResponse) {}
+  rpc LoginUser (LoginRequest) returns (LoginResponse) {}
 }
 
 message RegisterRequest {
@@ -25,10 +25,11 @@ message LoginRequest {
   string password = 2;
 }
 
-message AuthResponse {
+message RegisterResponse {
   int32 status = 1;
-  string token = 2;
-  string message = 3;
+  string message = 2;
+  string access_token = 3;
+  string refresh_token = 4;
 }
 
 message LoginResponse {
