@@ -11,6 +11,8 @@ service NotificationService {
 message NotificationRequest {
   string user_id = 1;
   string message = 2;
+  string title = 3;
+  string type = 4;
 }
 
 message NotificationResponse {
