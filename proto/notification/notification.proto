@@ -17,4 +17,5 @@ message NotificationRequest {
 
 message NotificationResponse {
   string status = 1;
+  string message = 2;
 }
