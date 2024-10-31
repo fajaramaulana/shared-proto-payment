@@ -13,6 +13,9 @@ message NotificationRequest {
   string message = 2;
   string title = 3;
   string type = 4;
+  string ip_address = 5;
+  string user_agent = 6;
+  string timestamp = 7;
 }
 
 message NotificationResponse {
