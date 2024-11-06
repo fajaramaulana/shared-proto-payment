@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package auth;
+import "auth/auth.proto";
+
+option go_package = "github.com/fajaramaulana/shared-proto-payment/proto/auth";
+
+service AuthService {
+  rpc RegisterUser (RegisterRequest) returns (RegisterResponse) {}
+  rpc LoginUser (LoginRequest) returns (LoginResponse) {}
+  rpc RefreshToken (RefreshTokenRequest) returns (RefreshTokenResponse) {}
+}

@@ -11,9 +11,12 @@ OUTPUT_DIR := .
 # Define the command to generate Protobuf files
 define generate_proto
 	protoc --proto_path=$(PROTO_PATH) \
-	       --go_out=$(OUTPUT_DIR) --go_opt=module=github.com/fajaramaulana/shared-proto-payment \
-	       --go-grpc_out=$(OUTPUT_DIR) --go-grpc_opt=module=github.com/fajaramaulana/shared-proto-payment \
-	       $(1)
+           --go_out=$(OUTPUT_DIR) --go_opt=module=github.com/fajaramaulana/shared-proto-payment \
+           $(1)
+    protoc --proto_path=$(PROTO_PATH) \
+           --go_out=$(OUTPUT_DIR) --go_opt=module=github.com/fajaramaulana/shared-proto-payment \
+           --go-grpc_out=$(OUTPUT_DIR) --go-grpc_opt=module=github.com/fajaramaulana/shared-proto-payment \
+           $(2)
 endef
 
 # Check if necessary tools are installed
@@ -28,22 +31,22 @@ all: check-tools auth payment transaction notification user account generate-moc
 
 # Generate Protobuf files for each service
 auth:
-	$(call generate_proto, $(PROTO_PATH)/auth/*.proto)
+	$(call generate_proto, $(PROTO_PATH)/auth/auth.proto, $(PROTO_PATH)/auth/auth_service.proto)
 
 payment:
-	$(call generate_proto, $(PROTO_PATH)/payment/*.proto)
+	$(call generate_proto, $(PROTO_PATH)/payment/payment.proto, $(PROTO_PATH)/payment/payment_service.proto)
 
 transaction:
-	$(call generate_proto, $(PROTO_PATH)/transaction/*.proto)
+	$(call generate_proto, $(PROTO_PATH)/transaction/transaction.proto, $(PROTO_PATH)/transaction/transaction_service.proto)
 
 notification:
-	$(call generate_proto, $(PROTO_PATH)/notification/*.proto)
+	$(call generate_proto, $(PROTO_PATH)/notification/notification.proto, $(PROTO_PATH)/notification/notification_service.proto)
 
 user:
-	$(call generate_proto, $(PROTO_PATH)/user/*.proto)
+	$(call generate_proto, $(PROTO_PATH)/user/user.proto, $(PROTO_PATH)/user/user_service.proto)
 
 account:
-	$(call generate_proto, $(PROTO_PATH)/account/*.proto)
+	$(call generate_proto, $(PROTO_PATH)/account/account.proto, $(PROTO_PATH)/account/account_service.proto)
 
 # Generate mocks for all interfaces
 generate-mocks:
@@ -52,5 +55,5 @@ generate-mocks:
 
 # Clean up generated files
 clean:
-	rm -f auth/*.pb.go payment/*.pb.go transaction/*.pb.go notification/*.pb.go user/*.pb.go account/*.pb.go
+	rm -f $(OUTPUT_DIR)/proto/auth/*.pb.go $(OUTPUT_DIR)/proto/payment/*.pb.go $(OUTPUT_DIR)/proto/transaction/*.pb.go $(OUTPUT_DIR)/proto/notification/*.pb.go $(OUTPUT_DIR)/proto/user/*.pb.go $(OUTPUT_DIR)/proto/account/*.pb.go
 	rm -f $(OUTPUT_DIR)/mocks/*.go

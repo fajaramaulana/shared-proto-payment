@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package account;
+
+import "account/account.proto";
+
+option go_package = 
+    "github.com/fajaramaulana/shared-proto-payment/proto/account";
+
+service AccountService {
+  rpc GetAccount (AccountRequest) returns (AccountResponse) {}
+  rpc GetAccountByUser (AccountRequestByUser) returns (AccountResponse) {}
+}

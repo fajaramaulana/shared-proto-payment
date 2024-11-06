@@ -12,3 +12,17 @@ message User {
   string email = 4;
   google.protobuf.Timestamp created_at = 5;
 }
+
+message UserRequest {
+  string user_uuid = 1;
+}
+
+message UserResponse {
+  string user_uuid = 1;
+  string username = 2;
+  string full_name = 3;
+  string email = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+

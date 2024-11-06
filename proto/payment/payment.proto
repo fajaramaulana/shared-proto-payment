@@ -2,12 +2,8 @@ syntax = "proto3";
 
 package payment;
 
-option go_package = "github.com/fajaramaulana/shared-proto-payment/proto/payment";
-
-service PaymentService {
-  rpc CreatePayment (PaymentRequest) returns (PaymentResponse) {}
-  rpc GetPaymentStatus (PaymentStatusRequest) returns (PaymentStatusResponse) {}
-}
+option go_package = 
+      "github.com/fajaramaulana/shared-proto-payment/proto/payment";
 
 message PaymentRequest {
   string payment_id = 1;

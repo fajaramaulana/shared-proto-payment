@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.21.12
-// source: transaction/transaction.proto
+// source: transaction/transaction_service.proto
 
 package transaction
 
@@ -155,5 +155,5 @@ var TransactionService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "transaction/transaction.proto",
+	Metadata: "transaction/transaction_service.proto",
 }
