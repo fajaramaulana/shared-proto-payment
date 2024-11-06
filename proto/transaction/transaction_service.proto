@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package transaction;
+
+import "transaction/transaction.proto";
+
+option go_package = 
+    "github.com/fajaramaulana/shared-proto-payment/proto/transaction";
+
+    
+service TransactionService {
+  rpc RecordTransaction (TransactionRequest) returns (TransactionResponse) {}
+  rpc GetTransactionSummary (SummaryRequest) returns (SummaryResponse) {}
+}

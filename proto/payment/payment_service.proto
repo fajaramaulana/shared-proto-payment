@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package payment;
+import "payment/payment.proto";
+
+option go_package = 
+    "github.com/fajaramaulana/shared-proto-payment/proto/payment";
+
+service PaymentService {
+  rpc CreatePayment (PaymentRequest) returns (PaymentResponse) {}
+  rpc GetPaymentStatus (PaymentStatusRequest) returns (PaymentStatusResponse) {}
+}

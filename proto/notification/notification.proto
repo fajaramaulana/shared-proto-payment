@@ -2,23 +2,23 @@ syntax = "proto3";
 
 package notification;
 
-option go_package = "github.com/fajaramaulana/shared-proto-payment/proto/notification";
+import "google/type/datetime.proto";
 
-service NotificationService {
-  rpc SendNotification (NotificationRequest) returns (NotificationResponse) {}
-}
+option go_package = 
+  "github.com/fajaramaulana/shared-proto-payment/proto/notification";
+
 
 message NotificationRequest {
-  string user_id = 1;
-  string message = 2;
-  string title = 3;
-  string type = 4;
-  string ip_address = 5;
-  string user_agent = 6;
-  string timestamp = 7;
+  string user_id = 1 [json_name = "user_id"];
+  string message = 2 [json_name = "message"];
+  string title = 3 [json_name = "title"];
+  string type = 4 [json_name = "type"];
+  string ip_address = 5 [json_name = "ip_address"];
+  string user_agent = 6 [json_name = "user_agent"];
+  google.type.DateTime timestamp = 7 [json_name = "timestamp"];
 }
 
 message NotificationResponse {
-  string status = 1;
-  string message = 2;
+  string status = 1 [json_name = "status"];
+  string message = 2 [json_name = "message"];
 }

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package user;
+
+import "user/user.proto";
+
+option go_package = "github.com/fajaramaulana/shared-proto-payment/proto/user";
+
+service UserService {
+  rpc GetUser (UserRequest) returns (UserResponse) {}
+}
