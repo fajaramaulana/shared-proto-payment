@@ -8,6 +8,10 @@ option go_package =
     "github.com/fajaramaulana/shared-proto-payment/proto/account";
 
 service AccountService {
-  rpc GetAccount (AccountRequest) returns (AccountResponse) {}
-  rpc GetAccountByUser (AccountRequestByUser) returns (AccountResponse) {}
+  rpc GetAccount (AccountRequestByAccountId) returns (AccountResponse) {}
+  rpc GetAccountByUser (AccountRequestByUserId) returns (AccountResponse) {}
+  rpc CreateAccount (Account) returns (AccountResponse) {}
+  rpc UpdateAccount (AccountUpdateRequest) returns (AccountResponse) {}
+  rpc UpdateBalanceAccount (AccountUpdateBalanceRequest) 
+    returns (AccountResponse) {}
 }

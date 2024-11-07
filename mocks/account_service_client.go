@@ -17,8 +17,45 @@ type AccountServiceClient struct {
 	mock.Mock
 }
 
+// CreateAccount provides a mock function with given fields: ctx, in, opts
+func (_m *AccountServiceClient) CreateAccount(ctx context.Context, in *account.Account, opts ...grpc.CallOption) (*account.AccountResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateAccount")
+	}
+
+	var r0 *account.AccountResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *account.Account, ...grpc.CallOption) (*account.AccountResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *account.Account, ...grpc.CallOption) *account.AccountResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*account.AccountResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *account.Account, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // GetAccount provides a mock function with given fields: ctx, in, opts
-func (_m *AccountServiceClient) GetAccount(ctx context.Context, in *account.AccountRequest, opts ...grpc.CallOption) (*account.AccountResponse, error) {
+func (_m *AccountServiceClient) GetAccount(ctx context.Context, in *account.AccountRequestByAccountId, opts ...grpc.CallOption) (*account.AccountResponse, error) {
 	_va := make([]interface{}, len(opts))
 	for _i := range opts {
 		_va[_i] = opts[_i]
@@ -34,10 +71,10 @@ func (_m *AccountServiceClient) GetAccount(ctx context.Context, in *account.Acco
 
 	var r0 *account.AccountResponse
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequest, ...grpc.CallOption) (*account.AccountResponse, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByAccountId, ...grpc.CallOption) (*account.AccountResponse, error)); ok {
 		return rf(ctx, in, opts...)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequest, ...grpc.CallOption) *account.AccountResponse); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByAccountId, ...grpc.CallOption) *account.AccountResponse); ok {
 		r0 = rf(ctx, in, opts...)
 	} else {
 		if ret.Get(0) != nil {
@@ -45,7 +82,7 @@ func (_m *AccountServiceClient) GetAccount(ctx context.Context, in *account.Acco
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountRequest, ...grpc.CallOption) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountRequestByAccountId, ...grpc.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)
@@ -55,7 +92,7 @@ func (_m *AccountServiceClient) GetAccount(ctx context.Context, in *account.Acco
 }
 
 // GetAccountByUser provides a mock function with given fields: ctx, in, opts
-func (_m *AccountServiceClient) GetAccountByUser(ctx context.Context, in *account.AccountRequestByUser, opts ...grpc.CallOption) (*account.AccountResponse, error) {
+func (_m *AccountServiceClient) GetAccountByUser(ctx context.Context, in *account.AccountRequestByUserId, opts ...grpc.CallOption) (*account.AccountResponse, error) {
 	_va := make([]interface{}, len(opts))
 	for _i := range opts {
 		_va[_i] = opts[_i]
@@ -71,10 +108,10 @@ func (_m *AccountServiceClient) GetAccountByUser(ctx context.Context, in *accoun
 
 	var r0 *account.AccountResponse
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByUser, ...grpc.CallOption) (*account.AccountResponse, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByUserId, ...grpc.CallOption) (*account.AccountResponse, error)); ok {
 		return rf(ctx, in, opts...)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByUser, ...grpc.CallOption) *account.AccountResponse); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByUserId, ...grpc.CallOption) *account.AccountResponse); ok {
 		r0 = rf(ctx, in, opts...)
 	} else {
 		if ret.Get(0) != nil {
@@ -82,7 +119,81 @@ func (_m *AccountServiceClient) GetAccountByUser(ctx context.Context, in *accoun
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountRequestByUser, ...grpc.CallOption) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountRequestByUserId, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// UpdateAccount provides a mock function with given fields: ctx, in, opts
+func (_m *AccountServiceClient) UpdateAccount(ctx context.Context, in *account.AccountUpdateRequest, opts ...grpc.CallOption) (*account.AccountResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateAccount")
+	}
+
+	var r0 *account.AccountResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountUpdateRequest, ...grpc.CallOption) (*account.AccountResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountUpdateRequest, ...grpc.CallOption) *account.AccountResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*account.AccountResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountUpdateRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// UpdateBalanceAccount provides a mock function with given fields: ctx, in, opts
+func (_m *AccountServiceClient) UpdateBalanceAccount(ctx context.Context, in *account.AccountUpdateBalanceRequest, opts ...grpc.CallOption) (*account.AccountResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateBalanceAccount")
+	}
+
+	var r0 *account.AccountResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountUpdateBalanceRequest, ...grpc.CallOption) (*account.AccountResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountUpdateBalanceRequest, ...grpc.CallOption) *account.AccountResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*account.AccountResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountUpdateBalanceRequest, ...grpc.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)

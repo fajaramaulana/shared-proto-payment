@@ -19,16 +19,22 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AccountService_GetAccount_FullMethodName       = "/account.AccountService/GetAccount"
-	AccountService_GetAccountByUser_FullMethodName = "/account.AccountService/GetAccountByUser"
+	AccountService_GetAccount_FullMethodName           = "/account.AccountService/GetAccount"
+	AccountService_GetAccountByUser_FullMethodName     = "/account.AccountService/GetAccountByUser"
+	AccountService_CreateAccount_FullMethodName        = "/account.AccountService/CreateAccount"
+	AccountService_UpdateAccount_FullMethodName        = "/account.AccountService/UpdateAccount"
+	AccountService_UpdateBalanceAccount_FullMethodName = "/account.AccountService/UpdateBalanceAccount"
 )
 
 // AccountServiceClient is the client API for AccountService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AccountServiceClient interface {
-	GetAccount(ctx context.Context, in *AccountRequest, opts ...grpc.CallOption) (*AccountResponse, error)
-	GetAccountByUser(ctx context.Context, in *AccountRequestByUser, opts ...grpc.CallOption) (*AccountResponse, error)
+	GetAccount(ctx context.Context, in *AccountRequestByAccountId, opts ...grpc.CallOption) (*AccountResponse, error)
+	GetAccountByUser(ctx context.Context, in *AccountRequestByUserId, opts ...grpc.CallOption) (*AccountResponse, error)
+	CreateAccount(ctx context.Context, in *Account, opts ...grpc.CallOption) (*AccountResponse, error)
+	UpdateAccount(ctx context.Context, in *AccountUpdateRequest, opts ...grpc.CallOption) (*AccountResponse, error)
+	UpdateBalanceAccount(ctx context.Context, in *AccountUpdateBalanceRequest, opts ...grpc.CallOption) (*AccountResponse, error)
 }
 
 type accountServiceClient struct {
@@ -39,7 +45,7 @@ func NewAccountServiceClient(cc grpc.ClientConnInterface) AccountServiceClient {
 	return &accountServiceClient{cc}
 }
 
-func (c *accountServiceClient) GetAccount(ctx context.Context, in *AccountRequest, opts ...grpc.CallOption) (*AccountResponse, error) {
+func (c *accountServiceClient) GetAccount(ctx context.Context, in *AccountRequestByAccountId, opts ...grpc.CallOption) (*AccountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AccountResponse)
 	err := c.cc.Invoke(ctx, AccountService_GetAccount_FullMethodName, in, out, cOpts...)
@@ -49,10 +55,40 @@ func (c *accountServiceClient) GetAccount(ctx context.Context, in *AccountReques
 	return out, nil
 }
 
-func (c *accountServiceClient) GetAccountByUser(ctx context.Context, in *AccountRequestByUser, opts ...grpc.CallOption) (*AccountResponse, error) {
+func (c *accountServiceClient) GetAccountByUser(ctx context.Context, in *AccountRequestByUserId, opts ...grpc.CallOption) (*AccountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AccountResponse)
 	err := c.cc.Invoke(ctx, AccountService_GetAccountByUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountServiceClient) CreateAccount(ctx context.Context, in *Account, opts ...grpc.CallOption) (*AccountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AccountResponse)
+	err := c.cc.Invoke(ctx, AccountService_CreateAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountServiceClient) UpdateAccount(ctx context.Context, in *AccountUpdateRequest, opts ...grpc.CallOption) (*AccountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AccountResponse)
+	err := c.cc.Invoke(ctx, AccountService_UpdateAccount_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountServiceClient) UpdateBalanceAccount(ctx context.Context, in *AccountUpdateBalanceRequest, opts ...grpc.CallOption) (*AccountResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AccountResponse)
+	err := c.cc.Invoke(ctx, AccountService_UpdateBalanceAccount_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -63,8 +99,11 @@ func (c *accountServiceClient) GetAccountByUser(ctx context.Context, in *Account
 // All implementations must embed UnimplementedAccountServiceServer
 // for forward compatibility.
 type AccountServiceServer interface {
-	GetAccount(context.Context, *AccountRequest) (*AccountResponse, error)
-	GetAccountByUser(context.Context, *AccountRequestByUser) (*AccountResponse, error)
+	GetAccount(context.Context, *AccountRequestByAccountId) (*AccountResponse, error)
+	GetAccountByUser(context.Context, *AccountRequestByUserId) (*AccountResponse, error)
+	CreateAccount(context.Context, *Account) (*AccountResponse, error)
+	UpdateAccount(context.Context, *AccountUpdateRequest) (*AccountResponse, error)
+	UpdateBalanceAccount(context.Context, *AccountUpdateBalanceRequest) (*AccountResponse, error)
 	mustEmbedUnimplementedAccountServiceServer()
 }
 
@@ -75,11 +114,20 @@ type AccountServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAccountServiceServer struct{}
 
-func (UnimplementedAccountServiceServer) GetAccount(context.Context, *AccountRequest) (*AccountResponse, error) {
+func (UnimplementedAccountServiceServer) GetAccount(context.Context, *AccountRequestByAccountId) (*AccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAccount not implemented")
 }
-func (UnimplementedAccountServiceServer) GetAccountByUser(context.Context, *AccountRequestByUser) (*AccountResponse, error) {
+func (UnimplementedAccountServiceServer) GetAccountByUser(context.Context, *AccountRequestByUserId) (*AccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAccountByUser not implemented")
+}
+func (UnimplementedAccountServiceServer) CreateAccount(context.Context, *Account) (*AccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateAccount not implemented")
+}
+func (UnimplementedAccountServiceServer) UpdateAccount(context.Context, *AccountUpdateRequest) (*AccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAccount not implemented")
+}
+func (UnimplementedAccountServiceServer) UpdateBalanceAccount(context.Context, *AccountUpdateBalanceRequest) (*AccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBalanceAccount not implemented")
 }
 func (UnimplementedAccountServiceServer) mustEmbedUnimplementedAccountServiceServer() {}
 func (UnimplementedAccountServiceServer) testEmbeddedByValue()                        {}
@@ -103,7 +151,7 @@ func RegisterAccountServiceServer(s grpc.ServiceRegistrar, srv AccountServiceSer
 }
 
 func _AccountService_GetAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AccountRequest)
+	in := new(AccountRequestByAccountId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -115,13 +163,13 @@ func _AccountService_GetAccount_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: AccountService_GetAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AccountServiceServer).GetAccount(ctx, req.(*AccountRequest))
+		return srv.(AccountServiceServer).GetAccount(ctx, req.(*AccountRequestByAccountId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AccountService_GetAccountByUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AccountRequestByUser)
+	in := new(AccountRequestByUserId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -133,7 +181,61 @@ func _AccountService_GetAccountByUser_Handler(srv interface{}, ctx context.Conte
 		FullMethod: AccountService_GetAccountByUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AccountServiceServer).GetAccountByUser(ctx, req.(*AccountRequestByUser))
+		return srv.(AccountServiceServer).GetAccountByUser(ctx, req.(*AccountRequestByUserId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountService_CreateAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Account)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServiceServer).CreateAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountService_CreateAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServiceServer).CreateAccount(ctx, req.(*Account))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountService_UpdateAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AccountUpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServiceServer).UpdateAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountService_UpdateAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServiceServer).UpdateAccount(ctx, req.(*AccountUpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AccountService_UpdateBalanceAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AccountUpdateBalanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServiceServer).UpdateBalanceAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountService_UpdateBalanceAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServiceServer).UpdateBalanceAccount(ctx, req.(*AccountUpdateBalanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -152,6 +254,18 @@ var AccountService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAccountByUser",
 			Handler:    _AccountService_GetAccountByUser_Handler,
+		},
+		{
+			MethodName: "CreateAccount",
+			Handler:    _AccountService_CreateAccount_Handler,
+		},
+		{
+			MethodName: "UpdateAccount",
+			Handler:    _AccountService_UpdateAccount_Handler,
+		},
+		{
+			MethodName: "UpdateBalanceAccount",
+			Handler:    _AccountService_UpdateBalanceAccount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

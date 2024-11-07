@@ -15,8 +15,38 @@ type AccountServiceServer struct {
 	mock.Mock
 }
 
+// CreateAccount provides a mock function with given fields: _a0, _a1
+func (_m *AccountServiceServer) CreateAccount(_a0 context.Context, _a1 *account.Account) (*account.AccountResponse, error) {
+	ret := _m.Called(_a0, _a1)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateAccount")
+	}
+
+	var r0 *account.AccountResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *account.Account) (*account.AccountResponse, error)); ok {
+		return rf(_a0, _a1)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *account.Account) *account.AccountResponse); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*account.AccountResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *account.Account) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // GetAccount provides a mock function with given fields: _a0, _a1
-func (_m *AccountServiceServer) GetAccount(_a0 context.Context, _a1 *account.AccountRequest) (*account.AccountResponse, error) {
+func (_m *AccountServiceServer) GetAccount(_a0 context.Context, _a1 *account.AccountRequestByAccountId) (*account.AccountResponse, error) {
 	ret := _m.Called(_a0, _a1)
 
 	if len(ret) == 0 {
@@ -25,10 +55,10 @@ func (_m *AccountServiceServer) GetAccount(_a0 context.Context, _a1 *account.Acc
 
 	var r0 *account.AccountResponse
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequest) (*account.AccountResponse, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByAccountId) (*account.AccountResponse, error)); ok {
 		return rf(_a0, _a1)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequest) *account.AccountResponse); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByAccountId) *account.AccountResponse); ok {
 		r0 = rf(_a0, _a1)
 	} else {
 		if ret.Get(0) != nil {
@@ -36,7 +66,7 @@ func (_m *AccountServiceServer) GetAccount(_a0 context.Context, _a1 *account.Acc
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountRequest) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountRequestByAccountId) error); ok {
 		r1 = rf(_a0, _a1)
 	} else {
 		r1 = ret.Error(1)
@@ -46,7 +76,7 @@ func (_m *AccountServiceServer) GetAccount(_a0 context.Context, _a1 *account.Acc
 }
 
 // GetAccountByUser provides a mock function with given fields: _a0, _a1
-func (_m *AccountServiceServer) GetAccountByUser(_a0 context.Context, _a1 *account.AccountRequestByUser) (*account.AccountResponse, error) {
+func (_m *AccountServiceServer) GetAccountByUser(_a0 context.Context, _a1 *account.AccountRequestByUserId) (*account.AccountResponse, error) {
 	ret := _m.Called(_a0, _a1)
 
 	if len(ret) == 0 {
@@ -55,10 +85,10 @@ func (_m *AccountServiceServer) GetAccountByUser(_a0 context.Context, _a1 *accou
 
 	var r0 *account.AccountResponse
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByUser) (*account.AccountResponse, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByUserId) (*account.AccountResponse, error)); ok {
 		return rf(_a0, _a1)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByUser) *account.AccountResponse); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountRequestByUserId) *account.AccountResponse); ok {
 		r0 = rf(_a0, _a1)
 	} else {
 		if ret.Get(0) != nil {
@@ -66,7 +96,67 @@ func (_m *AccountServiceServer) GetAccountByUser(_a0 context.Context, _a1 *accou
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountRequestByUser) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountRequestByUserId) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// UpdateAccount provides a mock function with given fields: _a0, _a1
+func (_m *AccountServiceServer) UpdateAccount(_a0 context.Context, _a1 *account.AccountUpdateRequest) (*account.AccountResponse, error) {
+	ret := _m.Called(_a0, _a1)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateAccount")
+	}
+
+	var r0 *account.AccountResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountUpdateRequest) (*account.AccountResponse, error)); ok {
+		return rf(_a0, _a1)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountUpdateRequest) *account.AccountResponse); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*account.AccountResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountUpdateRequest) error); ok {
+		r1 = rf(_a0, _a1)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// UpdateBalanceAccount provides a mock function with given fields: _a0, _a1
+func (_m *AccountServiceServer) UpdateBalanceAccount(_a0 context.Context, _a1 *account.AccountUpdateBalanceRequest) (*account.AccountResponse, error) {
+	ret := _m.Called(_a0, _a1)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateBalanceAccount")
+	}
+
+	var r0 *account.AccountResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountUpdateBalanceRequest) (*account.AccountResponse, error)); ok {
+		return rf(_a0, _a1)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountUpdateBalanceRequest) *account.AccountResponse); ok {
+		r0 = rf(_a0, _a1)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*account.AccountResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountUpdateBalanceRequest) error); ok {
 		r1 = rf(_a0, _a1)
 	} else {
 		r1 = ret.Error(1)

@@ -7,25 +7,35 @@ option go_package =
     "github.com/fajaramaulana/shared-proto-payment/proto/account";
 
 message Account {
-  string account_uuid =1;
-  string owner = 2;
-  string currency = 3;
-  string balance = 4;
-  google.protobuf.Timestamp created_at = 5;
+  string account_id = 1 [json_name = "account_id"];
+  string user_id = 2 [json_name = "user_id"];
+  string account_type = 3 [json_name = "account_type"];
+  string account_status = 4 [json_name = "account_status"];
+  string account_balance = 5 [json_name = "account_balance"];
+  google.protobuf.Timestamp created_at = 6 [json_name = "created_at"];
 }
 
-message AccountRequest {
-  string account_uuid = 1;
+message AccountRequestByAccountId {
+  string account_id = 1;
 }
 
-message AccountRequestByUser {
-  string user_uuid = 1;
+message AccountRequestByUserId {
+  string user_id = 1;
 }
 
 message AccountResponse {
-  string account_uuid = 1;
-  string owner = 2;
-  string currency = 3;
-  string balance = 4;
-  google.protobuf.Timestamp created_at = 5;
+  string status = 1;
+  string message = 2;
+  repeated Account accounts = 3;
+}
+
+message AccountUpdateRequest {
+  string account_id = 1;
+  string account_type = 2;
+  string account_status = 3;
+}
+
+message AccountUpdateBalanceRequest {
+  string account_id = 1;
+  string account_balance = 2;
 }
