@@ -18,6 +18,8 @@ message RegisterRequest {
   google.type.Date dob = 6 [json_name = "dob"];
   string place_of_birth = 7 [json_name = "place_of_birth"];
   string phone_number = 8 [json_name = "phone_number"];
+  string ip_address = 9 [json_name = "ip_address"];
+  string user_agent = 10 [json_name = "user_agent"];
 }
 
 message LoginRequest {
