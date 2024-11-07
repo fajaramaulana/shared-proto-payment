@@ -16,6 +16,7 @@ message NotificationRequest {
   string ip_address = 5 [json_name = "ip_address"];
   string user_agent = 6 [json_name = "user_agent"];
   google.type.DateTime timestamp = 7 [json_name = "timestamp"];
+  string type_id = 8 [json_name = "type_id"];
 }
 
 message NotificationResponse {
