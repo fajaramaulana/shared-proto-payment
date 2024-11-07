@@ -27,7 +27,7 @@ check-tools:
 	@which mockery > /dev/null || (echo "mockery is not installed" && exit 1)
 
 # Main target to run all tasks
-all: check-tools auth payment transaction notification user account generate-mocks
+all: clean check-tools auth payment transaction notification user account generate-mocks
 
 # Generate Protobuf files for each service
 auth:
