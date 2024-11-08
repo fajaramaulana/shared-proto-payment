@@ -10,7 +10,7 @@ option go_package =
 service AccountService {
   rpc GetAccount (AccountRequestByAccountId) returns (AccountResponse) {}
   rpc GetAccountByUser (AccountRequestByUserId) returns (AccountResponse) {}
-  rpc CreateAccount (Account) returns (AccountResponse) {}
+  rpc CreateAccount (AccountCreateRequest) returns (AccountResponse) {}
   rpc UpdateAccount (AccountUpdateRequest) returns (AccountResponse) {}
   rpc UpdateBalanceAccount (AccountUpdateBalanceRequest) 
     returns (AccountResponse) {}

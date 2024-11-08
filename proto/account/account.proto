@@ -39,3 +39,8 @@ message AccountUpdateBalanceRequest {
   string account_id = 1;
   string account_balance = 2;
 }
+
+message AccountCreateRequest {
+  string user_id = 1;
+  string account_type = 2;
+}
