@@ -16,7 +16,7 @@ type AccountServiceServer struct {
 }
 
 // CreateAccount provides a mock function with given fields: _a0, _a1
-func (_m *AccountServiceServer) CreateAccount(_a0 context.Context, _a1 *account.Account) (*account.AccountResponse, error) {
+func (_m *AccountServiceServer) CreateAccount(_a0 context.Context, _a1 *account.AccountCreateRequest) (*account.AccountResponse, error) {
 	ret := _m.Called(_a0, _a1)
 
 	if len(ret) == 0 {
@@ -25,10 +25,10 @@ func (_m *AccountServiceServer) CreateAccount(_a0 context.Context, _a1 *account.
 
 	var r0 *account.AccountResponse
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, *account.Account) (*account.AccountResponse, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountCreateRequest) (*account.AccountResponse, error)); ok {
 		return rf(_a0, _a1)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, *account.Account) *account.AccountResponse); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountCreateRequest) *account.AccountResponse); ok {
 		r0 = rf(_a0, _a1)
 	} else {
 		if ret.Get(0) != nil {
@@ -36,7 +36,7 @@ func (_m *AccountServiceServer) CreateAccount(_a0 context.Context, _a1 *account.
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, *account.Account) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountCreateRequest) error); ok {
 		r1 = rf(_a0, _a1)
 	} else {
 		r1 = ret.Error(1)

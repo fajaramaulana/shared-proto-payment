@@ -18,7 +18,7 @@ type AccountServiceClient struct {
 }
 
 // CreateAccount provides a mock function with given fields: ctx, in, opts
-func (_m *AccountServiceClient) CreateAccount(ctx context.Context, in *account.Account, opts ...grpc.CallOption) (*account.AccountResponse, error) {
+func (_m *AccountServiceClient) CreateAccount(ctx context.Context, in *account.AccountCreateRequest, opts ...grpc.CallOption) (*account.AccountResponse, error) {
 	_va := make([]interface{}, len(opts))
 	for _i := range opts {
 		_va[_i] = opts[_i]
@@ -34,10 +34,10 @@ func (_m *AccountServiceClient) CreateAccount(ctx context.Context, in *account.A
 
 	var r0 *account.AccountResponse
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, *account.Account, ...grpc.CallOption) (*account.AccountResponse, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountCreateRequest, ...grpc.CallOption) (*account.AccountResponse, error)); ok {
 		return rf(ctx, in, opts...)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, *account.Account, ...grpc.CallOption) *account.AccountResponse); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *account.AccountCreateRequest, ...grpc.CallOption) *account.AccountResponse); ok {
 		r0 = rf(ctx, in, opts...)
 	} else {
 		if ret.Get(0) != nil {
@@ -45,7 +45,7 @@ func (_m *AccountServiceClient) CreateAccount(ctx context.Context, in *account.A
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, *account.Account, ...grpc.CallOption) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, *account.AccountCreateRequest, ...grpc.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)
