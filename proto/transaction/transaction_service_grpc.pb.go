@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TransactionService_RecordTransaction_FullMethodName     = "/transaction.TransactionService/RecordTransaction"
-	TransactionService_GetTransactionSummary_FullMethodName = "/transaction.TransactionService/GetTransactionSummary"
+	TransactionService_RecordTransaction_FullMethodName        = "/transaction.TransactionService/RecordTransaction"
+	TransactionService_GetLatestFiveTransaction_FullMethodName = "/transaction.TransactionService/GetLatestFiveTransaction"
 )
 
 // TransactionServiceClient is the client API for TransactionService service.
@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransactionServiceClient interface {
 	RecordTransaction(ctx context.Context, in *TransactionRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
-	GetTransactionSummary(ctx context.Context, in *SummaryRequest, opts ...grpc.CallOption) (*SummaryResponse, error)
+	GetLatestFiveTransaction(ctx context.Context, in *SummaryRequest, opts ...grpc.CallOption) (*SummaryResponse, error)
 }
 
 type transactionServiceClient struct {
@@ -49,10 +49,10 @@ func (c *transactionServiceClient) RecordTransaction(ctx context.Context, in *Tr
 	return out, nil
 }
 
-func (c *transactionServiceClient) GetTransactionSummary(ctx context.Context, in *SummaryRequest, opts ...grpc.CallOption) (*SummaryResponse, error) {
+func (c *transactionServiceClient) GetLatestFiveTransaction(ctx context.Context, in *SummaryRequest, opts ...grpc.CallOption) (*SummaryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SummaryResponse)
-	err := c.cc.Invoke(ctx, TransactionService_GetTransactionSummary_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TransactionService_GetLatestFiveTransaction_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (c *transactionServiceClient) GetTransactionSummary(ctx context.Context, in
 // for forward compatibility.
 type TransactionServiceServer interface {
 	RecordTransaction(context.Context, *TransactionRequest) (*TransactionResponse, error)
-	GetTransactionSummary(context.Context, *SummaryRequest) (*SummaryResponse, error)
+	GetLatestFiveTransaction(context.Context, *SummaryRequest) (*SummaryResponse, error)
 	mustEmbedUnimplementedTransactionServiceServer()
 }
 
@@ -78,8 +78,8 @@ type UnimplementedTransactionServiceServer struct{}
 func (UnimplementedTransactionServiceServer) RecordTransaction(context.Context, *TransactionRequest) (*TransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RecordTransaction not implemented")
 }
-func (UnimplementedTransactionServiceServer) GetTransactionSummary(context.Context, *SummaryRequest) (*SummaryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTransactionSummary not implemented")
+func (UnimplementedTransactionServiceServer) GetLatestFiveTransaction(context.Context, *SummaryRequest) (*SummaryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLatestFiveTransaction not implemented")
 }
 func (UnimplementedTransactionServiceServer) mustEmbedUnimplementedTransactionServiceServer() {}
 func (UnimplementedTransactionServiceServer) testEmbeddedByValue()                            {}
@@ -120,20 +120,20 @@ func _TransactionService_RecordTransaction_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionService_GetTransactionSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransactionService_GetLatestFiveTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SummaryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionServiceServer).GetTransactionSummary(ctx, in)
+		return srv.(TransactionServiceServer).GetLatestFiveTransaction(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TransactionService_GetTransactionSummary_FullMethodName,
+		FullMethod: TransactionService_GetLatestFiveTransaction_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServiceServer).GetTransactionSummary(ctx, req.(*SummaryRequest))
+		return srv.(TransactionServiceServer).GetLatestFiveTransaction(ctx, req.(*SummaryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -150,8 +150,8 @@ var TransactionService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TransactionService_RecordTransaction_Handler,
 		},
 		{
-			MethodName: "GetTransactionSummary",
-			Handler:    _TransactionService_GetTransactionSummary_Handler,
+			MethodName: "GetLatestFiveTransaction",
+			Handler:    _TransactionService_GetLatestFiveTransaction_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

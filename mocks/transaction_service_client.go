@@ -17,8 +17,8 @@ type TransactionServiceClient struct {
 	mock.Mock
 }
 
-// GetTransactionSummary provides a mock function with given fields: ctx, in, opts
-func (_m *TransactionServiceClient) GetTransactionSummary(ctx context.Context, in *transaction.SummaryRequest, opts ...grpc.CallOption) (*transaction.SummaryResponse, error) {
+// GetLatestFiveTransaction provides a mock function with given fields: ctx, in, opts
+func (_m *TransactionServiceClient) GetLatestFiveTransaction(ctx context.Context, in *transaction.SummaryRequest, opts ...grpc.CallOption) (*transaction.SummaryResponse, error) {
 	_va := make([]interface{}, len(opts))
 	for _i := range opts {
 		_va[_i] = opts[_i]
@@ -29,7 +29,7 @@ func (_m *TransactionServiceClient) GetTransactionSummary(ctx context.Context, i
 	ret := _m.Called(_ca...)
 
 	if len(ret) == 0 {
-		panic("no return value specified for GetTransactionSummary")
+		panic("no return value specified for GetLatestFiveTransaction")
 	}
 
 	var r0 *transaction.SummaryResponse
