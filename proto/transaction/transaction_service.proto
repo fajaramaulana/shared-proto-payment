@@ -10,5 +10,5 @@ option go_package =
     
 service TransactionService {
   rpc RecordTransaction (TransactionRequest) returns (TransactionResponse) {}
-  rpc GetTransactionSummary (SummaryRequest) returns (SummaryResponse) {}
+  rpc GetLatestFiveTransaction (SummaryRequest) returns (SummaryResponse) {}
 }

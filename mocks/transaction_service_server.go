@@ -14,12 +14,12 @@ type TransactionServiceServer struct {
 	mock.Mock
 }
 
-// GetTransactionSummary provides a mock function with given fields: _a0, _a1
-func (_m *TransactionServiceServer) GetTransactionSummary(_a0 context.Context, _a1 *transaction.SummaryRequest) (*transaction.SummaryResponse, error) {
+// GetLatestFiveTransaction provides a mock function with given fields: _a0, _a1
+func (_m *TransactionServiceServer) GetLatestFiveTransaction(_a0 context.Context, _a1 *transaction.SummaryRequest) (*transaction.SummaryResponse, error) {
 	ret := _m.Called(_a0, _a1)
 
 	if len(ret) == 0 {
-		panic("no return value specified for GetTransactionSummary")
+		panic("no return value specified for GetLatestFiveTransaction")
 	}
 
 	var r0 *transaction.SummaryResponse

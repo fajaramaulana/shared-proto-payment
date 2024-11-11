@@ -29,4 +29,8 @@ message Transaction {
   string description = 3;
   string transaction_type = 4;
   string transaction_date = 5;
+
+  // not required
+  string account_id = 16;
+  string to_account_id = 17;
 }
