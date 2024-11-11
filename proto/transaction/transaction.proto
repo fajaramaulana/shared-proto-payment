@@ -27,4 +27,6 @@ message Transaction {
   string transaction_id = 1;
   double amount = 2;
   string description = 3;
+  string transaction_type = 4;
+  string transaction_date = 5;
 }
