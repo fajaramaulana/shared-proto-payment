@@ -20,7 +20,9 @@ message SummaryRequest {
 }
 
 message SummaryResponse {
-  repeated Transaction transactions = 1;
+  string status = 1;
+  string message = 2;
+  repeated Transaction transactions = 3;
 }
 
 message Transaction {
